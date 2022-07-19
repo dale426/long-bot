@@ -1,0 +1,22 @@
+{
+  "name": "wehcaty-bot",
+  "version": "1.0.0",
+  "description": "基于wechaty的微信机器人",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dale426/long-bot.git"
+  },
+  "keywords": [
+    "自动化\\机器人"
+  ],
+  "author": "dale",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dale426/long-bot/issues"
+  },
+  "homepage": "https://github.com/dale426/long-bot#readme"
+}
