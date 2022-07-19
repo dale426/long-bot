@@ -4,6 +4,7 @@
   "description": "基于wechaty的微信机器人",
   "main": "index.js",
   "scripts": {
+    "start": "node --loader ts-node/esm ./index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/dale426/long-bot/issues"
   },
-  "homepage": "https://github.com/dale426/long-bot#readme"
+  "homepage": "https://github.com/dale426/long-bot#readme",
+  "devDependencies": {
+    "@types/node": "^18.0.6",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  }
 }
