@@ -16,3 +16,5 @@ npm install -D typescript
 npm install -D ts-node
 npm install -D tslib @types/node
 ```
+
+`tsconfig.ts`文件中配置  `"target": "es2016", "module": "CommonJS"`这两个参数，同时package.json中不能配置 `type: module`,否则会报错
