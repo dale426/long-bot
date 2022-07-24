@@ -3,7 +3,7 @@ import qt from 'qrcode-terminal'
 import { onLogin } from './src/listeners/login'
 import { onMessage } from './src/listeners/message'
 import { onLogout } from './src/listeners/logout'
-
+import { onScan } from './src/listeners/scan'
 // 登录
 // async function onLogin(user: ContactSelfInterface) {
 //   console.log(`贴心小助理${user}登录了`);
@@ -45,7 +45,7 @@ import { onLogout } from './src/listeners/logout'
 
 function main() {
   const bot = WechatyBuilder.build({
-    name: 'WechatEveryDay',
+    name: 'long-bot',
     puppet: 'wechaty-puppet-wechat', // 如果有token，记得更换对应的puppet
     puppetOptions: {
       uos: true
@@ -60,8 +60,8 @@ function main() {
   bot
     .start()
     .then(() => console.log('开始登陆微信'))
-    .catch((e) => console.error(e))
-  
+    .catch((e) => console.error(`程序奔溃了,${e.message}`))
+
   return bot
 }
 
