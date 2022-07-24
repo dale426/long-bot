@@ -18,3 +18,18 @@ npm install -D tslib @types/node
 ```
 
 `tsconfig.ts`文件中配置  `"target": "es2016", "module": "CommonJS"`这两个参数，同时package.json中不能配置 `type: module`,否则会报错
+
+### wechaty依赖安装
+
+1. 设置镜像源
+
+```shell
+npm config set registry https://registry.npmmirror.com/
+npm config set disturl https://npm.taobao.org/dist
+npm config set puppeteer_download_host https://npm.taobao.org/mirrors
+```
+2. 安装依赖
+```shell
+npm install wechaty-puppet-wechat
+npm install wechaty
+```
