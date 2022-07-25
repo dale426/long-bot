@@ -4,7 +4,6 @@
  */
 import { Message } from 'wechaty'
 import { transferMsg } from '../methods/transfer'
-import { receiverList } from '../../config/contact';
 
 export async function onMessage(this: any, msg: Message) {
 
@@ -13,11 +12,9 @@ export async function onMessage(this: any, msg: Message) {
 
   const room = msg.room(); // 是否为群消息
 
-  console.info('Message:::', msg.toString())
-
   if (msg.text() === 'ding') {
     await msg.say('dong')
   }
 
-  transferMsg(this, receiverList.dale, msg)
+  transferMsg(this, msg)
 }
