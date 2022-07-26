@@ -1,7 +1,6 @@
 import got from 'got'
-// import cheerio from 'cheerio'
-// const cheerio = require('cheerio');
-import * as cheerio from 'cheerio'
+import cheerio from 'cheerio'
+import config from '../../config'
 
 export async function getOne() {
     try {
@@ -17,7 +16,30 @@ export async function getOne() {
         return todayOne;
     } catch (e) {
         console.log('获取每日一句出错', e);
-        return '今天也是元气慢慢的一天呀';
+        return '<今天也是元气慢慢的一天呀>';
     }
 
+}
+
+export async function getWeather() {
+    let url = config.MOJI_HOST + config.CITY + '/' + config.LOCATION
+    let res = await got.get(url)
+
+    let $ = cheerio.load(res.body)
+    let weatherTips = $('.wea_tips em').text()
+    const today = $('.forecast .days').first().find('li');
+    let todayInfo = {
+        Day: $(today[0]).text().replace(/(^\s*)|(\s*$)/g, ""),
+        WeatherText: $(today[1]).text().replace(/(^\s*)|(\s*$)/g, ""),
+        Temp: $(today[2]).text().replace(/(^\s*)|(\s*$)/g, ""),
+        Wind: $(today[3]).find('em').text().replace(/(^\s*)|(\s*$)/g, ""),
+        WindLevel: $(today[3]).find('b').text().replace(/(^\s*)|(\s*$)/g, ""),
+        PollutionLevel: $(today[4]).find('strong').text().replace(/(^\s*)|(\s*$)/g, "")
+    }
+    let obj = {
+        weatherTips: weatherTips,
+        todayWeather: todayInfo.Day + ':' + todayInfo.WeatherText + '<br>' + '温度:' + todayInfo.Temp + '<br>'
+            + todayInfo.Wind + todayInfo.WindLevel + '<br>' + '空气:' + todayInfo.PollutionLevel + '<br>'
+    }
+    return obj
 }
