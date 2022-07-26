@@ -3,6 +3,7 @@ import { onLogin } from './src/listeners/login'
 import { onMessage } from './src/listeners/message'
 import { onLogout } from './src/listeners/logout'
 import { onScan } from './src/listeners/scan'
+import { getOne } from './src/api/request'
 
 function main() {
   const bot = WechatyBuilder.build({
@@ -26,4 +27,8 @@ function main() {
   return bot
 }
 
-main()
+getOne().then(r => {
+  console.log('getOne():::',r)
+
+})
+// main()
