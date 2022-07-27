@@ -16,5 +16,5 @@ export async function onMessage(this: any, msg: Message) {
     await msg.say('dong')
   }
 
-  // transferMsg(this, msg)
+  transferMsg(this, msg)
 }

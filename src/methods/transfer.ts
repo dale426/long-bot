@@ -3,17 +3,20 @@ import { sleep } from '../lib'
 import { users, Users } from '../../config/contact';
 
 export async function transferMsg(that: Wechaty, msg: Message) {
-    transferMsgToDale(that, msg, 'cqq', 'dale')
+    transferMsgOneToOne(that, msg, { fromer: 'xiaoge', receiver: 'dale' })
 }
 
-export async function transferMsgToDale<T extends keyof Users>(that: Wechaty, msg: Message, fromer: T, receiver: T) {
+// 一对一消息转发
+export async function transferMsgOneToOne<T extends keyof Users>(that: Wechaty, msg: Message, options: { fromer: T, receiver: T }) {
     // 只处理文本消息
     if (msg.type() !== that.Message.Type.Text) return
 
+    const { fromer, receiver } = options
+
     // 判断是否指定发件人的消息
-    const from = msg.talker()
-    const { alias: fromAlias, name: fromName } = from.payload || {}
-    if (fromAlias !== users[fromer].NICKNAME && fromName !== users[fromer].NAME) return
+    const currFrom = msg.talker()
+    const { alias: msgFromAlias, name: msgFromName } = currFrom.payload || {}
+    if (msgFromAlias !== users[fromer].NICKNAME && msgFromName !== users[fromer].NAME) return
 
     // 判断接收人是否存在
     const { NICKNAME: name, NAME: alias } = users[receiver]
