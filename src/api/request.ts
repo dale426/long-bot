@@ -1,7 +1,10 @@
 import got from 'got'
 import cheerio from 'cheerio'
 import config from '../../config'
+import { Response, CancelableRequest } from 'got';
 
+
+// 获取每日一句
 export async function getOne() {
     try {
         const res = await got.get<string>('http://wufazhuce.com/', {});
@@ -21,6 +24,9 @@ export async function getOne() {
 
 }
 
+/**
+ * 获取天气
+ */
 export async function getWeather() {
     let url = config.MOJI_HOST + config.CITY + '/' + config.LOCATION
     let res = await got.get(url)
@@ -42,4 +48,29 @@ export async function getWeather() {
             + todayInfo.Wind + todayInfo.WindLevel + '<br>' + '空气:' + todayInfo.PollutionLevel + '<br>'
     }
     return obj
+}
+
+/**
+ * 获取土味情话
+ */
+export async function getSweetWord() {
+    let url = config.TXHOST + 'saylove/index';
+    try {
+        let res = await got.get(url, {
+            searchParams: { key: config.TXAPIKEY }
+        }).json<{
+            code: number,
+            newslist: any[]
+        }>();
+
+        if (res.code === 200) {
+            let sweet = res.newslist[0].content;
+            let str = sweet.replace('\r\n', '<br>');
+            return str;
+        } else {
+            return '你很像一款游戏。我的世界'
+        }
+    } catch (err) {
+        console.log('获取接口失败', err);
+    }
 }
