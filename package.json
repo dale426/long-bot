@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
+    "dayjs": "^1.11.4",
     "got": "^11.8.5",
     "node-schedule": "^2.1.0",
     "qrcode-terminal": "^0.12.0",
