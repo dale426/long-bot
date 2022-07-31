@@ -1,6 +1,6 @@
 import got from 'got'
 import cheerio from 'cheerio'
-import config from '../../config'
+import config from '../config'
 import { Response, CancelableRequest } from 'got';
 
 

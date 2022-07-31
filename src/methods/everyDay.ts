@@ -1,11 +1,11 @@
 import { WechatyInterface } from "wechaty/impls";
-import config from "../../config/index";
+import config from "../config/index";
 import setSchedule from '../schedule'
-import { users } from '../../config/contact'
+import { users } from '../config/contact'
 import { getOne, getWeather, getSweetWord } from '../api/request'
 import { getDay, formatDate, sleep } from '../utils'
 
-const { NICKNAME: name, NAME: alias } = users.dale
+const { NICKNAME: name, NAME: alias } = users.cqq
 
 export function initDay(bot: WechatyInterface) {
     console.log(`已经设定每日说任务`);
