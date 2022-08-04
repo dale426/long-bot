@@ -5,6 +5,5 @@
  import { Contact } from 'wechaty'
  
  export function onLogout (user: Contact) {
-
-    console.info('StarterBot', '%s logout', user)
+    console.info(`stop Bot ${user.name()} 下线了`)
   }

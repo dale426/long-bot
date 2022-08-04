@@ -11,6 +11,7 @@ import { users } from '../config/contact'
 export async function onMessage(this: Wechaty, msg: Message) {
 
   const msgSelf = msg.self(); // 是否自己发给自己的消息
+  // 通知管理员，机器人上线了
   if (msgSelf) {
     return notificationManager(this, msg)
   };
@@ -24,7 +25,7 @@ export async function onMessage(this: Wechaty, msg: Message) {
   const fromer = msg.talker().payload?.alias
   if (!fromer) return
 
-  if ([users.cqq?.NICKNAME, users.dale.NICKNAME]?.includes(fromer) && ['纪念日'].includes(msg.text())) {
+  if ([users.cqq?.alias, users.dale.alias]?.includes(fromer) && ['纪念日'].includes(msg.text())) {
     let content = await getReplayContent()
     await msg.talker().say(content)
   }

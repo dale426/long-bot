@@ -9,7 +9,7 @@ export function initDay(bot: WechatyInterface) {
     console.log('定时任务已经设置⏱️');
 
     setSchedule(config.SENDDATE, async () => {
-        const { NICKNAME: name, NAME: alias } = users.cqq
+        const { name, alias } = users.cqq
 
         let contact =
             (await bot.Contact.find({ name })) ||
