@@ -44,8 +44,8 @@ export async function getWeather() {
     }
     let obj = {
         weatherTips: weatherTips,
-        todayWeather: todayInfo.Day + ':' + todayInfo.WeatherText + '<br>' + '温度:' + todayInfo.Temp + '<br>'
-            + todayInfo.Wind + todayInfo.WindLevel + '<br>' + '空气:' + todayInfo.PollutionLevel + '<br>'
+        todayWeather: todayInfo.Day + ': ' + todayInfo.WeatherText + '<br>' + '温度: ' + todayInfo.Temp + '<br>'
+            + todayInfo.Wind + todayInfo.WindLevel + '<br>' + '空气: ' + todayInfo.PollutionLevel + '<br>'
     }
     return obj
 }

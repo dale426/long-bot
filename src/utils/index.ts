@@ -25,8 +25,10 @@ export function formatDate() {
   if (+second < 10) {
     second = "0" + second;
   }
+  
   return year + "年" + month + "月" + day + "日 " + hour + ":" + min + ":" + second;
 }
+
 // 延迟执行函数
 export async function sleep(time: number = 1000) {
   return new Promise((resolve, rejects) => {

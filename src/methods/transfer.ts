@@ -1,5 +1,4 @@
 import { Wechaty, Message } from "wechaty"
-import { sleep } from '../lib'
 import { users, Users } from '../config/contact';
 
 export async function transferMsg(bot: Wechaty, msg: Message) {

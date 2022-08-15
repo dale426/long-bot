@@ -3,23 +3,21 @@ import config from "../config/index";
 import setSchedule from '../schedule'
 import { users, Users } from '../config/contact'
 import { getOne, getWeather, getSweetWord } from '../api/request'
-import { getDay, formatDate, sleep } from '../utils'
+import { getDay, formatDate } from '../utils'
 
 export function initDay(bot: WechatyInterface) {
     console.log('定时任务已经设置⏱️');
 
     setSchedule(config.SENDDATE, async () => {
-        const { name, alias } = users.cqq
-
-        let contact =
-            (await bot.Contact.find({ name })) ||
-            (await bot.Contact.find({ alias })); // 获取你要发送的联系人
+        let contact_cqq = await bot.Contact.find({ alias: users?.cqq?.alias }); // 获取你要发送的联系人
+        let contact_dale = await bot.Contact.find({ alias: users?.dale?.alias }); // 获取你要发送的联系人
 
         let content = await getReplayContent()
 
         try {
+            await contact_cqq?.say(content); // 发送消息
             await bot.sleep(2000)
-            await contact?.say(content); // 发送消息
+            await contact_dale?.say(content); // 发送消息
         } catch (e: any) {
             console.log('[say content failed]: ', content)
         }

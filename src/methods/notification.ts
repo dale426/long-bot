@@ -14,7 +14,7 @@ export async function notificationManager(bot: Wechaty, msg: Message) {
             (await bot.Contact.find({ alias })); // 获取你要发送的联系人
 
         console.log('通知管理员小助手上线了')
-        await bot.sleep(1200)
+        await bot.sleep(800)
  
         setTimeout(async () => {
             await contact?.say(`小助手【${msg.talker()?.payload?.name}】
